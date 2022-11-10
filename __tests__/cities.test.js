@@ -8,13 +8,23 @@ describe('cities routes', () => {
     return setup(pool);
   });
 
-  it('/cities should return a list of cities', async () => {
-    const res = await request(app).get('/cities');
-    expect(res.body.length).toEqual(5);
-    const nyc = res.body.find((city) => city.id === '1');
+  it('GET /cities should return a list of cities', async () => {
+    const resp = await request(app).get('/cities');
+    expect(resp.body.length).toEqual(5);
+    const nyc = resp.body.find((city) => city.id === '1');
     expect(nyc).toHaveProperty('name', 'NYC');
     expect(nyc).toHaveProperty('state', 'New York');
     expect(nyc).toHaveProperty('population', '8.4 million');
+  });
+
+  it('GET /cities/:id should return a single city', async () => {
+    const resp = await request(app).get('/cities/1');
+    expect(resp.body).toEqual({
+      id: '1',
+      name: 'NYC',
+      state: 'New York',
+      population: '8.4 million',
+    });  
   });
 
   afterAll(() => {
