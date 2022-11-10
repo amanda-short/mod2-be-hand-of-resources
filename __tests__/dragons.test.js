@@ -27,6 +27,17 @@ describe('dragons routes', () => {
     });  
   });
 
+  it('POST /dragons should create a new dragon', async () => {
+    const resp = await request(app).post('/dragons').send({
+      name: 'Hungarian Horntail',
+      origin: 'Hungary',
+      color: 'Black', 
+    });
+    expect(resp.body.name).toBe('Hungarian Horntail');
+    expect(resp.body.origin).toBe('Hungary');
+    expect(resp.body.color).toBe('Black');
+  }); 
+
   afterAll(() => {
     pool.end();
   });
