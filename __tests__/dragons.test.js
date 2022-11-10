@@ -38,6 +38,14 @@ describe('dragons routes', () => {
     expect(resp.body.color).toBe('Black');
   }); 
 
+  it('PUT /dragons/:id should update dragon', async () => {
+    const resp = await request(app)
+      .put('/dragons/2')
+      .send({ name: 'Swedish Short Snout' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Swedish Short Snout');
+  });
+
   afterAll(() => {
     pool.end();
   });
