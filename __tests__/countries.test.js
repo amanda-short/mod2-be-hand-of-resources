@@ -39,6 +39,13 @@ describe('countries routes', () => {
     expect(resp.body.population).toBe('59 million');
   }); 
 
+  it('PUT /countries/:id should update country', async () => {
+    const resp = await request(app)
+      .put('/countries/2')
+      .send({ name: 'Belgium' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Belgium');
+  });
 
   afterAll(() => {
     pool.end();
