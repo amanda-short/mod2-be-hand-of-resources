@@ -73,7 +73,7 @@ VALUES
     color 
 )
 VALUES
-  ('Hungarian Horntail', 'Hungry', 'Black'),
+  ('Hungarian Horntail', 'Hungary', 'Black'),
   ('Swedish Short Snout', 'Sweden', 'Silvery Blue'),
   ('Chinese Fireball', 'China', 'Scarlet'),
   ('Common Welsh Green', 'Wales', 'Green'),
