@@ -17,6 +17,16 @@ describe('countries routes', () => {
     expect(italy).toHaveProperty('population', '59 million');
   });
 
+  it('GET /countries/:id should return a single country', async () => {
+    const resp = await request(app).get('/countries/1');
+    expect(resp.body).toEqual({
+      id: '1',
+      name: 'Italy',
+      language: 'Italian',
+      population: '59 million',
+    });  
+  });
+
   afterAll(() => {
     pool.end();
   });
