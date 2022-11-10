@@ -27,6 +27,17 @@ describe('cities routes', () => {
     });  
   });
 
+  it('POST /cities should create a new city', async () => {
+    const resp = await request(app).post('/cities').send({
+      name: 'NYC',
+      state: 'New York',
+      population: '8.4 million', 
+    });
+    expect(resp.body.name).toBe('NYC');
+    expect(resp.body.state).toBe('New York');
+    expect(resp.body.population).toBe('8.4 million');
+  });  
+
   afterAll(() => {
     pool.end();
   });
