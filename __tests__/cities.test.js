@@ -38,6 +38,14 @@ describe('cities routes', () => {
     expect(resp.body.population).toBe('8.4 million');
   });  
 
+  it('PUT /cities/:id should update city', async () => {
+    const resp = await request(app)
+      .put('/cities/2')
+      .send({ name: 'St Louis' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('St Louis');
+  });
+
   afterAll(() => {
     pool.end();
   });
