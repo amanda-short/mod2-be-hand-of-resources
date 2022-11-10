@@ -46,6 +46,13 @@ describe('dragons routes', () => {
     expect(resp.body.name).toEqual('Swedish Short Snout');
   });
 
+  it('DELETE /dragons/:id should delete a dragon', async () => {
+    const resp = await request(app).delete('/dragons/2');
+    expect(resp.status).toEqual(200);
+    const { body } = await request(app).get('/dragons/2');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
