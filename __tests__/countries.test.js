@@ -27,6 +27,19 @@ describe('countries routes', () => {
     });  
   });
 
+  it('POST /countries should create a new country', async () => {
+    const resp = await request(app).post('/countries').send({
+      id: '1',
+      name: 'Italy',
+      language: 'Italian',
+      population: '59 million', 
+    });
+    expect(resp.body.name).toBe('Italy');
+    expect(resp.body.language).toBe('Italian');
+    expect(resp.body.population).toBe('59 million');
+  }); 
+
+
   afterAll(() => {
     pool.end();
   });
