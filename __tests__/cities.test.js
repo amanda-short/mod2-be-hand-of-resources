@@ -46,6 +46,13 @@ describe('cities routes', () => {
     expect(resp.body.name).toEqual('St Louis');
   });
 
+  it('DELETE /cities/:id should delete a city', async () => {
+    const resp = await request(app).delete('/cities/2');
+    expect(resp.status).toEqual(200);
+    const { body } = await request(app).get('/cities/2');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
