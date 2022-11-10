@@ -17,6 +17,16 @@ describe('dragons routes', () => {
     expect(hungarianHorntail).toHaveProperty('color', 'Black');
   });
 
+  it('GET /dragons/:id should return a single dragon', async () => {
+    const resp = await request(app).get('/dragons/1');
+    expect(resp.body).toEqual({
+      id: '1',
+      name: 'Hungarian Horntail',
+      origin: 'Hungary',
+      color: 'Black',
+    });  
+  });
+
   afterAll(() => {
     pool.end();
   });
