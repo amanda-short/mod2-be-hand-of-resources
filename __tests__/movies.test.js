@@ -38,6 +38,14 @@ describe('movies routes', () => {
     expect(resp.body.studio).toBe('Paramount Pictures');
   });  
 
+  it('PUT /movies/:id should update movie', async () => {
+    const resp = await request(app)
+      .put('/movies/2')
+      .send({ title: '9 to 5' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.title).toEqual('9 to 5');
+  });
+
   afterAll(() => {
     pool.end();
   });
