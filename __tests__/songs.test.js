@@ -17,6 +17,16 @@ describe('songs routes', () => {
     expect(creep).toHaveProperty('release', 1992);
   });
 
+  it('GET /songs/:id should return a single song', async () => {
+    const resp = await request(app).get('/songs/1');
+    expect(resp.body).toEqual({
+      id: '1',
+      name: 'Creep',
+      artist: 'Radiohead',
+      release: 1992,
+    });  
+  });
+
   afterAll(() => {
     pool.end();
   });
