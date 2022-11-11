@@ -27,6 +27,17 @@ describe('movies routes', () => {
     });  
   });
 
+  it('POST /movies should create a new movie', async () => {
+    const resp = await request(app).post('/movies').send({
+      title: 'Titanic',
+      release: 1997,
+      studio: 'Paramount Pictures',
+    });
+    expect(resp.body.title).toBe('Titanic');
+    expect(resp.body.release).toBe(1997);
+    expect(resp.body.studio).toBe('Paramount Pictures');
+  });  
+
   afterAll(() => {
     pool.end();
   });
