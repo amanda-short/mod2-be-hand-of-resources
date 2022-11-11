@@ -46,6 +46,13 @@ describe('songs routes', () => {
     expect(resp.body.name).toEqual('Imagine');
   });
 
+  it('DELETE /songs/:id should delete a song', async () => {
+    const resp = await request(app).delete('/songs/2');
+    expect(resp.status).toEqual(200);
+    const { body } = await request(app).get('/songs/2');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
