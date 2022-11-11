@@ -38,6 +38,14 @@ describe('songs routes', () => {
     expect(resp.body.release).toBe(1992);
   }); 
 
+  it('PUT /songs/:id should update song', async () => {
+    const resp = await request(app)
+      .put('/songs/2')
+      .send({ name: 'Imagine' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Imagine');
+  });
+
   afterAll(() => {
     pool.end();
   });
