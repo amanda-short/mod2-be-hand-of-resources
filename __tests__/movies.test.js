@@ -17,6 +17,16 @@ describe('movies routes', () => {
     expect(titanic).toHaveProperty('studio', 'Paramount Pictures');
   });
 
+  it('GET /movies/:id should return a single movie', async () => {
+    const resp = await request(app).get('/movies/1');
+    expect(resp.body).toEqual({
+      id: '1',
+      title: 'Titanic',
+      release: 1997,
+      studio: 'Paramount Pictures',
+    });  
+  });
+
   afterAll(() => {
     pool.end();
   });
