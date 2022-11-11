@@ -27,6 +27,17 @@ describe('songs routes', () => {
     });  
   });
 
+  it('POST /songs should create a new song', async () => {
+    const resp = await request(app).post('/songs').send({
+      name: 'Creep',
+      artist: 'Radiohead',
+      release: 1992, 
+    });
+    expect(resp.body.name).toBe('Creep');
+    expect(resp.body.artist).toBe('Radiohead');
+    expect(resp.body.release).toBe(1992);
+  }); 
+
   afterAll(() => {
     pool.end();
   });
