@@ -46,6 +46,13 @@ describe('movies routes', () => {
     expect(resp.body.title).toEqual('9 to 5');
   });
 
+  it('DELETE /movies/:id should delete a movie', async () => {
+    const resp = await request(app).delete('/movies/2');
+    expect(resp.status).toEqual(200);
+    const { body } = await request(app).get('/movies/2');
+    expect(body).toEqual(null);
+  });
+
   afterAll(() => {
     pool.end();
   });
